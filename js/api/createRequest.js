@@ -17,14 +17,14 @@ const createRequest = (options = {}) => {
         }
 
         fullUrl.search = searchParams.toString();
-        let newUrl = fullUrl.toString();
-        console.log(newUrl);
-        console.log(typeof(newUrl));
+        options.url = fullUrl.toString();
+        //console.log(newUrl);
+        //console.log(typeof(newUrl));
     }
     if (options.method == 'GET') {
-        newUrl = newUrl;
+        console.log('Here it is ' + options.url);
         let xhr = new XMLHttpRequest();
-        xhr.open(options.method, newUrl);
+        xhr.open(options.method, options.url);
         xhr.send();
     
     }
