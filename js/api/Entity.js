@@ -4,10 +4,14 @@
  * Имеет свойство HOST, равно 'https://bhj-diplom.letsdocode.ru'.
  * */
 class Entity {
+  static URL = '';
+  static HOST = 'https://bhj-diplom.letsdocode.ru/';
+  /*
   constructor() {
     this.URL = '';
-    this.HOST = 'https://bhj-diplom.letsdocode.ru'
+    this.HOST = 'https://bhj-diplom.letsdocode.ru/'
   }
+  */
 
 
   /**
@@ -16,7 +20,12 @@ class Entity {
    * (в зависимости от того, что наследуется от Entity)
    * */
   static list( data, callback = f => f ) {
-
+    createRequest({
+      'data': data,
+      'method': 'GET',
+      url: (Entity.HOST + Entity.URL),
+      'callback': callback 
+    })
   }
 
   /**
@@ -44,8 +53,4 @@ class Entity {
 
   }
 }
-
-let as = new Entity();
-
-console.log(as.HOST);
 
