@@ -34,6 +34,16 @@ class Entity {
    * что наследуется от Entity)
    * */
   static create( data, callback = f => f ) {
+    const modifyData = Object.assign({}, data);
+    modifyData._method = 'PUT';
+    console.log('modify: ', modifyData);
+    console.log('data ', data);
+    createRequest({
+      'data': modifyData,
+      'method': 'POST',
+      url: (Entity.HOST + Entity.URL),
+      'callback': callback 
+    })
 
   }
 
@@ -42,6 +52,16 @@ class Entity {
    * (в зависимости от того, что наследуется от Entity)
    * */
   static get( id = '', data, callback = f => f ) {
+    const getData = Object.assign({}, data);
+    getData.id = id;
+    console.log(getData);
+    createRequest({
+      'data': getData,
+      'method': 'GET',
+      'responseType': 'json',
+      url: (Entity.HOST + Entity.URL),
+      'callback': callback
+    })
 
   }
 
@@ -50,7 +70,16 @@ class Entity {
    * (в зависимости от того, что наследуется от Entity)
    * */
   static remove( id = '', data, callback = f => f ) {
-
+    const removeData = Object.assign({}, data);
+    removeData.id = id;
+    removeData._method = 'DELETE';
+    createRequest({
+      'data': removeData,
+      'method': 'POST',
+      'responseType': 'json',
+      url: (Entity.HOST + Entity.URL),
+      'callback': callback 
+    })
   }
 }
 
