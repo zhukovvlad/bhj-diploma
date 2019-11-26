@@ -20,7 +20,7 @@ class User {
    * пользователе из локального хранилища.
    * */
   static unsetCurrent() {
-
+    localStorage.removeItem('user');
   }
 
   /**
@@ -28,7 +28,11 @@ class User {
    * из локального хранилища
    * */
   static current() {
-
+    try {
+      return JSON.parse(localStorage.getItem('user'));
+    } catch (e) {
+      return 'undefined';
+    }
   }
 
   /**
